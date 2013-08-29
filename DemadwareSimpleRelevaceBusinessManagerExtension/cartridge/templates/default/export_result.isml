@@ -1,0 +1,10 @@
+<isdecorate template="application/MenuFrame">
+	<iscontent type="text/html" charset="UTF-8">
+	<isinclude template="inc/Modules">
+	<p>
+	REMOVE ME AS SOON AS POSSIBLE.
+	<isprint value="${pdict.CsCount}" /> -- <isprint value="${pdict.PrCount}" /> -- <isprint value="${pdict.PrCount}" />
+	| |<isprint value="${pdict.APIMsg}" /> |
+	</p>
+	<br />
+</isdecorate>

@@ -1,0 +1,101 @@
+/**
+*
+* @input APIKEY : String
+* @input BusinessName : String
+*
+* @output APIMsg : String
+*/
+importPackage(dw.system);
+importPackage(dw.object);
+importPackage(dw.customer);
+importPackage(dw.catalog);
+importPackage(dw.order);
+
+importClass(dw.object.SystemObjectMgr);
+importClass(dw.util.List);
+importClass(dw.util.SeekableIterator);
+importClass(dw.net.HTTPClient);
+
+importScript("json_serializer.ds");
+
+function execute( args : PipelineDictionary ) : Number
+{
+	// Constants
+	var SimpleRelevanceAPIURL : String = "https://simplerelevance.com/api/v3/";
+	var SimpleRelevanceAPIEndPointItems : String = SimpleRelevanceAPIURL + "items/";
+	var SimpleRelevanceAPIEndPointUsers : String = SimpleRelevanceAPIURL + "users/";
+	// !Constants
+	
+	var httpClient : HTTPClient = new HTTPClient();
+	var message : String;
+	
+	// Customers
+	var customerIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Profile");
+	var batchItemJson: Object;
+	var listData = [];
+	
+	while (customerIt.hasNext()) {
+		var customer : Customer = customerIt.next();
+		batchItemJson = JsonSerializer.getSimpleObject({
+			'email': customer.email,
+			'user_id': customer.customerNo,
+		});
+		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(customer);
+		listData.push(batchItemJson);
+	}
+	
+	httpClient.open("POST", SimpleRelevanceAPIEndPointUsers, args.APIKEY, args.BusinessName);
+	httpClient.send(JSON.stringify({'batch': listData}));
+	
+	customerIt = null;
+	// !Customers
+	
+	
+	// Products
+	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
+	var batchItemJson: Object;
+	var listData = [];
+	
+	while (productIt.hasNext()) {
+		var product : Product = productIt.next();
+		batchItemJson = JsonSerializer.getSimpleObject({
+			"item_name": product.name,
+			"item_id": product.ID,
+			"item_type": "product",
+		});
+		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product);
+		listData.push(batchItemJson);
+	}
+	
+	httpClient.open("POST", SimpleRelevanceAPIEndPointItems, args.APIKEY, args.BusinessName);
+	httpClient.send(JSON.stringify({'batch': listData}));
+	
+	productIt = null;
+	// !Products
+	
+	// Orders
+	var orderIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Order");
+	var batchItemJson: Object;
+	var listData = [];
+	
+	while (orderIt.hasNext()) {
+		var order : Order = orderIt.next();
+		batchItemJson = JsonSerializer.getSimpleObject({
+			"item_name": order.sourceCode,
+			"item_id": order.orderNo,
+			"item_type": "order",
+		});
+		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(order);
+		listData.push(batchItemJson);
+	}
+	
+	httpClient.open("POST", "https://simplerelevance.com/api/v3/items/", args.APIKEY, args.BusinessName);
+	httpClient.send(JSON.stringify({'batch': listData}));
+
+	orderIt = null;
+	// !Orders
+
+	args.APIMsg = message;
+
+	return PIPELET_NEXT;
+}

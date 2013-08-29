@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+	<menuitem id="simplerelevance_menu" position="1999" site="true">
+		<name xml:lang="x-default">SimpleRelevance</name>
+		<short_description xml:lang="x-default">SimpleRelevance short description.</short_description>
+		<description xml:lang="x-default">SimpleRelevance description!</description>
+		<icon>icons/bullet-sel.gif</icon>
+	</menuitem>
+	
+	<!-- Export All Resources -->
+	<menuaction id="export_customers_for_simplerelevance_menu_action" menupath="simplerelevance_menu" position="500" site="true">
+		<name xml:lang="x-default">Export resources</name>
+		<short_description xml:lang="x-default">Export resources for SimpleRelevance</short_description>
+		<description xml:lang="x-default">Export resources for SimpleRelevance</description>
+		<exec pipeline="ExportResourceForSimpleRelevance" node="Start" />
+		<sub-pipelines>
+			<pipeline name="ExportResourceForSimpleRelevance" />
+		</sub-pipelines>
+		<parameters>
+			<parameter name="APIKEY" value="test_engine" />
+			<parameter name="BusinessName" value="test123" />
+		</parameters>
+		<icon>icons/bullet-unsel.gif</icon>
+	</menuaction>
+
+
+</extensions>
