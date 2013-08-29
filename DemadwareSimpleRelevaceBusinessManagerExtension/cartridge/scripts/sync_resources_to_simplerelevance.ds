@@ -78,6 +78,11 @@ function execute( args : PipelineDictionary ) : Number
 	
 	while (customerIt.hasNext()) {
 		var profile : Profile = customerIt.next();
+		
+		if (profile.getEmail() == "") {
+			logMe("Email attr of Customer: '" + profile.customerNo + "' was empty, Ignored.", "info");
+			continue;
+		}
 		batchItemJson = JsonSerializer.getSimpleObject({
 			'email': profile.email,
 			'user_id': profile.customerNo,
