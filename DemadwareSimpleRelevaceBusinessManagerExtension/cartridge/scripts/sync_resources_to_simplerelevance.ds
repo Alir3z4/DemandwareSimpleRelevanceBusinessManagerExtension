@@ -77,7 +77,7 @@ function execute( args : PipelineDictionary ) : Number
 	}
 	
 	while (customerIt.hasNext()) {
-		var customer : Profile = customerIt.next();
+		var profile : Profile = customerIt.next();
 		batchItemJson = JsonSerializer.getSimpleObject({
 			'email': profile.email,
 			'user_id': profile.customerNo,
