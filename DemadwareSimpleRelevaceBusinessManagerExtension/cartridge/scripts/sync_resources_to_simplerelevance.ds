@@ -79,8 +79,8 @@ function execute( args : PipelineDictionary ) : Number
 	while (customerIt.hasNext()) {
 		var customer : Profile = customerIt.next();
 		batchItemJson = JsonSerializer.getSimpleObject({
-			'email': customer.email,
-			'user_id': customer.customerNo,
+			'email': profile.email,
+			'user_id': profile.customerNo,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(profile, jsonSerializerArgs);
 		listData.push(batchItemJson);
@@ -121,7 +121,7 @@ function execute( args : PipelineDictionary ) : Number
 		var product : Product = productIt.next();
 		batchItemJson = JsonSerializer.getSimpleObject({
 			"item_name": product.name,
-			"item_id": product.ID,
+			"item_id": product.getID(),
 			"item_type": "product",
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
