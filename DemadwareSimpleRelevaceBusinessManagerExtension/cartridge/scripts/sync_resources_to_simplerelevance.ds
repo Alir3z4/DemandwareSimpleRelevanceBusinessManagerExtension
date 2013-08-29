@@ -3,7 +3,6 @@
 * @input APIKEY : String
 * @input BusinessName : String
 *
-* @output APIMsg : String
 */
 importPackage(dw.system);
 importPackage(dw.object);
@@ -32,8 +31,6 @@ function execute( args : PipelineDictionary ) : Number
 	// !Constants
 
 	var httpClient : HTTPClient = new HTTPClient();
-	var message : String;
-	var log : Log = Logger.getLogger("SimpleRelevance", "log")
 	
 	function batchAPICall(endPoint : String, payload : Object) {
 		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
@@ -118,8 +115,6 @@ function execute( args : PipelineDictionary ) : Number
 	listData = null;
 	orderIt = null;
 	// !Orders
-
-	args.APIMsg = message;
 
 	return PIPELET_NEXT;
 }

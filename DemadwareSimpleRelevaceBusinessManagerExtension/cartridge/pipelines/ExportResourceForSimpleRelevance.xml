@@ -19,7 +19,6 @@
           <config-property key="OnError" value="Exception"/>
           <config-property key="ScriptFile" value="sync_resources_to_simplerelevance.ds"/>
           <key-binding alias="ScriptLog" key="ScriptLog"/>
-          <key-binding alias="APIMsg" key="APIMsg"/>
           <key-binding alias="CurrentHttpParameterMap.APIKEY.value" key="APIKEY"/>
           <key-binding alias="CurrentHttpParameterMap.BusinessName.value" key="BusinessName"/>
         </pipelet-node>
