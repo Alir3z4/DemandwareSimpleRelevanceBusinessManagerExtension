@@ -59,6 +59,8 @@ function execute( args : PipelineDictionary ) : Number
 	}
 
 	// Customers
+	logMe("Start syncing 'Customers'", 'info');
+	
 	var customerIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Profile");
 	var batchItemJson: Object;
 	var listData : Array = new Array();
@@ -78,6 +80,7 @@ function execute( args : PipelineDictionary ) : Number
 	
 	while (customerIt.hasNext()) {
 		var profile : Profile = customerIt.next();
+		logMe("Preparing Customer: '" + profile.customerNo + "' to export", 'info');
 		
 		if (profile.getEmail() == "") {
 			logMe("Email attr of Customer: '" + profile.customerNo + "' was empty, Ignored.", "info");
@@ -91,6 +94,7 @@ function execute( args : PipelineDictionary ) : Number
 		listData.push(batchItemJson);
 	}
 	
+	logMe("Batch API call for 'Customers'", 'info');
 	batchAPICall(SimpleRelevanceAPIEndPointUsers, listData);
 	
 	customerIt = null;
@@ -98,6 +102,8 @@ function execute( args : PipelineDictionary ) : Number
 	
 	
 	// Products
+	logMe("Start syncing 'Products'", 'info');
+	
 	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
 	var batchItemJson: Object;
 	var listData : Array = new Array();
@@ -124,6 +130,8 @@ function execute( args : PipelineDictionary ) : Number
 	
 	while (productIt.hasNext()) {
 		var product : Product = productIt.next();
+		logMe("Preparing Product: '" + product.ID + "' to export", 'info');
+		
 		batchItemJson = JsonSerializer.getSimpleObject({
 			"item_name": product.name,
 			"item_id": product.getID(),
@@ -132,23 +140,30 @@ function execute( args : PipelineDictionary ) : Number
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
 		listData.push(batchItemJson);
 	}
-
+	
+	logMe("Batch API call for 'Products'", 'info');
 	batchAPICall(SimpleRelevanceAPIEndPointItems, listData);
 
 	productIt = null;
 	// !Products
 	
 	// Orders
+	logMe("Start syncing 'Orders'", 'info');
+	
 	var orderIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Order");
 	var batchItemJson: Object;
 	var listData : Array = new Array();
 	
 	while (orderIt.hasNext()) {
 		var order : Order = orderIt.next();
+		logMe("Preparing Order: '" + order.orderNo + "' to export", 'info');
+		
 		var itemIt : Iterator = order.productLineItems.iterator();
 		
 		while (itemIt.hasNext()) {
 			var item : Product =  itemIt.next();
+			logMe("Preparing Order Item: '" + item.ID + "' to export", 'info');
+
 			batchItemJson = JsonSerializer.getSimpleObject({
 				'user_id': order.customerNo,
 				'item_id': item.ID,
@@ -159,8 +174,10 @@ function execute( args : PipelineDictionary ) : Number
 		}
 	}
 	
+	logMe("Batch API call for 'Orders'", 'info');
 	batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
 
+	logMe("Free!", 'info');
 	listData = null;
 	orderIt = null;
 	// !Orders
