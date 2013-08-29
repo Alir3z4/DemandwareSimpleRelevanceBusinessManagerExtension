@@ -99,6 +99,7 @@ function execute( args : PipelineDictionary ) : Number
 	httpClient.open("POST", SimpleRelevanceAPIEndPointActions, args.APIKEY, args.BusinessName);
 	httpClient.send(JSON.stringify({'batch': listData}));
 
+	listData = null;
 	orderIt = null;
 	// !Orders
 
