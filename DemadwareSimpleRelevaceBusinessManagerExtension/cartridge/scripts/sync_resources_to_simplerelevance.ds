@@ -61,7 +61,20 @@ function execute( args : PipelineDictionary ) : Number
 	// Customers
 	var customerIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Profile");
 	var batchItemJson: Object;
-	var listData = [];
+	var listData : Array = new Array();
+	jsonSerializerArgs = {
+		'includeFields': [
+			'birthday',
+			'creationDate',
+			'fax',
+			'gender',
+			'firstName',
+			'lastName',
+			'title',
+			'male',
+			'female',
+		]
+	}
 	
 	while (customerIt.hasNext()) {
 		var customer : Profile = customerIt.next();
@@ -69,7 +82,7 @@ function execute( args : PipelineDictionary ) : Number
 			'email': customer.email,
 			'user_id': customer.customerNo,
 		});
-		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(customer);
+		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(profile, jsonSerializerArgs);
 		listData.push(batchItemJson);
 	}
 	
@@ -82,7 +95,27 @@ function execute( args : PipelineDictionary ) : Number
 	// Products
 	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
 	var batchItemJson: Object;
-	var listData = [];
+	var listData : Array = new Array();
+	jsonSerializerArgs = {
+		'includeFields': [
+			'EAN',
+			'ID',
+			'brand',
+			'creationDate',
+			'lastModified',
+			'image',
+			'longDescription',
+			'shortDescription',
+			'manufacturerName',
+			'manufacturerSKU',
+			'name',
+			'pageDescription',
+			'pageKeywords',
+			'pageTitle',
+			'pageURL',
+			'thumbnail',	
+		]
+	}
 	
 	while (productIt.hasNext()) {
 		var product : Product = productIt.next();
@@ -91,7 +124,7 @@ function execute( args : PipelineDictionary ) : Number
 			"item_id": product.ID,
 			"item_type": "product",
 		});
-		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product);
+		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
 		listData.push(batchItemJson);
 	}
 
@@ -103,7 +136,7 @@ function execute( args : PipelineDictionary ) : Number
 	// Orders
 	var orderIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Order");
 	var batchItemJson: Object;
-	var listData = [];
+	var listData : Array = new Array();
 	
 	while (orderIt.hasNext()) {
 		var order : Order = orderIt.next();
