@@ -25,6 +25,7 @@ function execute( args : PipelineDictionary ) : Number
 	var SimpleRelevanceAPIURL : String = "https://simplerelevance.com/api/v3/";
 	var SimpleRelevanceAPIEndPointItems : String = SimpleRelevanceAPIURL + "items/";
 	var SimpleRelevanceAPIEndPointUsers : String = SimpleRelevanceAPIURL + "users/";
+	var SimpleRelevanceAPIEndPointActions :  String = SimpleRelevanceAPIURL + "actions/";
 	// !Constants
 	
 	var httpClient : HTTPClient = new HTTPClient();
