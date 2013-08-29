@@ -16,8 +16,11 @@ importClass(dw.util.List);
 importClass(dw.util.Collection);
 importClass(dw.util.SeekableIterator);
 importClass(dw.net.HTTPClient);
+importClass(dw.system.Logger);
+importClass(dw.system.Log);
 
 importScript("json_serializer.ds");
+
 
 function execute( args : PipelineDictionary ) : Number
 {
@@ -27,14 +30,24 @@ function execute( args : PipelineDictionary ) : Number
 	var SimpleRelevanceAPIEndPointUsers : String = SimpleRelevanceAPIURL + "users/";
 	var SimpleRelevanceAPIEndPointActions :  String = SimpleRelevanceAPIURL + "actions/";
 	// !Constants
-	
+
 	var httpClient : HTTPClient = new HTTPClient();
 	var message : String;
+	var log : Log = Logger.getLogger("SimpleRelevance", "log")
 	
 	function batchAPICall(endPoint : String, payload : Object) {
 		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
 		httpClient.send(JSON.stringify(payload));
 		
+		if (httpClient.statusCode == 200) {
+			if (log.infoEnabled) {
+				log.info("Succesfull batch api call to '" + endPoint + "'");
+			}
+		} else {
+			if (log.errorEnabled) {
+				log.error("Error in batch api call to '" + endPoint + "' Error was: " + httpClient.errorText);
+			}
+		}
 	}
 
 	// Customers
