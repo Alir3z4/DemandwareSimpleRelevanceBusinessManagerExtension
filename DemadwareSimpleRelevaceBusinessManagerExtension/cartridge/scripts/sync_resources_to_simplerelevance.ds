@@ -13,6 +13,7 @@ importPackage(dw.order);
 
 importClass(dw.object.SystemObjectMgr);
 importClass(dw.util.List);
+importClass(dw.util.Collection);
 importClass(dw.util.SeekableIterator);
 importClass(dw.net.HTTPClient);
 
