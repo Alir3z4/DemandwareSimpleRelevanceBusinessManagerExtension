@@ -82,16 +82,21 @@ function execute( args : PipelineDictionary ) : Number
 	
 	while (orderIt.hasNext()) {
 		var order : Order = orderIt.next();
-		batchItemJson = JsonSerializer.getSimpleObject({
-			"item_name": order.sourceCode,
-			"item_id": order.orderNo,
-			"item_type": "order",
-		});
-		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(order);
-		listData.push(batchItemJson);
+		var itemIt : Iterator = order.productLineItems.iterator();
+		
+		while (itemIt.hasNext()) {
+			var item : Product =  itemIt.next();
+			batchItemJson = JsonSerializer.getSimpleObject({
+				'user_id': order.customerNo,
+				'item_id': item.ID,
+				'price': item.priceModel.getPriceInfo().price.toString(),
+				'action_type': 1,
+			});
+			listData.push(batchItemJson);
+		}
 	}
 	
-	httpClient.open("POST", "https://simplerelevance.com/api/v3/items/", args.APIKEY, args.BusinessName);
+	httpClient.open("POST", SimpleRelevanceAPIEndPointActions, args.APIKEY, args.BusinessName);
 	httpClient.send(JSON.stringify({'batch': listData}));
 
 	orderIt = null;
