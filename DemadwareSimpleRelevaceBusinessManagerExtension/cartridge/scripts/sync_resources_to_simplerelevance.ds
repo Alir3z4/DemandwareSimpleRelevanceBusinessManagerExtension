@@ -39,18 +39,22 @@ function execute( args : PipelineDictionary ) : Number
 		else if (logLevel == "info") {if (log.isInfoEnabled()) {log.info(msg);}}
 		else if (logLevel == "error") {if (log.isErrorEnabled()) {log.error(msg);}}
 	}
-	function batchAPICall(endPoint : String, payload : Object) {
-		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
-		httpClient.send(JSON.stringify(payload));
+	
+	function batchAPICall(endPoint : String, payload : Array) {
 		
-		if (httpClient.statusCode == 200) {
-			if (log.infoEnabled) {
-				log.info("Succesfull batch api call to '" + endPoint + "'");
-			}
+		if (payload.length == 0) {
+			logMe("Payload for '" + endPoint + "' was empty, API call has been made.", 'info');
+			return;
+		}
+		
+		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
+		httpClient.setRequestHeader("Content-Type", "application/json");
+		httpClient.send(JSON.stringify({'batch': payload}));
+		
+		if (httpClient.getStatusCode() == 201 || httpClient.getStatusCode() == 200) {
+			logMe("Succesfull batch api call to '" + endPoint + "'", 'info');
 		} else {
-			if (log.errorEnabled) {
-				log.error("Error in batch api call to '" + endPoint + "' Error was: " + httpClient.errorText);
-			}
+			log.error("Error in batch api call to '" + endPoint + "' Error was: " + httpClient.getErrorText(), 'error');
 		}
 	}
 
