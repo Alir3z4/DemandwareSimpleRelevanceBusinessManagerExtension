@@ -31,6 +31,12 @@ function execute( args : PipelineDictionary ) : Number
 	var httpClient : HTTPClient = new HTTPClient();
 	var message : String;
 	
+	function batchAPICall(endPoint : String, payload : Object) {
+		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
+		httpClient.send(JSON.stringify(payload));
+		
+	}
+
 	// Customers
 	var customerIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Profile");
 	var batchItemJson: Object;
@@ -46,8 +52,7 @@ function execute( args : PipelineDictionary ) : Number
 		listData.push(batchItemJson);
 	}
 	
-	httpClient.open("POST", SimpleRelevanceAPIEndPointUsers, args.APIKEY, args.BusinessName);
-	httpClient.send(JSON.stringify({'batch': listData}));
+	batchAPICall(SimpleRelevanceAPIEndPointUsers, listData);
 	
 	customerIt = null;
 	// !Customers
@@ -68,10 +73,9 @@ function execute( args : PipelineDictionary ) : Number
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product);
 		listData.push(batchItemJson);
 	}
-	
-	httpClient.open("POST", SimpleRelevanceAPIEndPointItems, args.APIKEY, args.BusinessName);
-	httpClient.send(JSON.stringify({'batch': listData}));
-	
+
+	batchAPICall(SimpleRelevanceAPIEndPointItems, listData);
+
 	productIt = null;
 	// !Products
 	
@@ -96,8 +100,7 @@ function execute( args : PipelineDictionary ) : Number
 		}
 	}
 	
-	httpClient.open("POST", SimpleRelevanceAPIEndPointActions, args.APIKEY, args.BusinessName);
-	httpClient.send(JSON.stringify({'batch': listData}));
+	batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
 
 	listData = null;
 	orderIt = null;
