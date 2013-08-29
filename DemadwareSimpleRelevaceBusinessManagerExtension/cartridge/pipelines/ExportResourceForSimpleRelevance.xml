@@ -5,7 +5,7 @@
   <branch basename="Start">
     <segment>
       <node>
-        <start-node call-mode="public" name="Start" secure="true"/>
+        <start-node call-mode="private" name="Start" secure="true"/>
         <node-display x="0" y="0"/>
       </node>
       <simple-transition>
