@@ -31,7 +31,14 @@ function execute( args : PipelineDictionary ) : Number
 	// !Constants
 
 	var httpClient : HTTPClient = new HTTPClient();
+	var log : Log = Logger.getLogger("SimpleRelevance", "log");
+	var jsonSerializerArgs = {};
 	
+	function logMe(msg : String, logLevel : String) {
+		if (logLevel == "debug") {if (log.isDebugEnabled()) {log.debug(msg);}}
+		else if (logLevel == "info") {if (log.isInfoEnabled()) {log.info(msg);}}
+		else if (logLevel == "error") {if (log.isErrorEnabled()) {log.error(msg);}}
+	}
 	function batchAPICall(endPoint : String, payload : Object) {
 		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
 		httpClient.send(JSON.stringify(payload));
