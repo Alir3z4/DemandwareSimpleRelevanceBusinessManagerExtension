@@ -31,7 +31,7 @@ function execute( args : PipelineDictionary ) : Number
 	// !Constants
 
 	var httpClient : HTTPClient = new HTTPClient();
-	var log : Log = Logger.getLogger("SimpleRelevance", "log");
+	var log : Log = Logger.getLogger("SimpleRelevance", 'SimpleRelevanceLogger');
 	var jsonSerializerArgs = {};
 	
 	function logMe(msg : String, logLevel : String) {
@@ -39,14 +39,15 @@ function execute( args : PipelineDictionary ) : Number
 		else if (logLevel == "info") {if (log.isInfoEnabled()) {log.info(msg);}}
 		else if (logLevel == "error") {if (log.isErrorEnabled()) {log.error(msg);}}
 	}
-	
+
+
 	function batchAPICall(endPoint : String, payload : Array) {
 		
 		if (payload.length == 0) {
 			logMe("Payload for '" + endPoint + "' was empty, API call has been made.", 'info');
 			return;
 		}
-		
+
 		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
 		httpClient.setRequestHeader("Content-Type", "application/json");
 		httpClient.send(JSON.stringify({'batch': payload}));
