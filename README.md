@@ -52,7 +52,7 @@ That's all you need in order to get schedule job notification propely enabled an
 SimpleRelevance Business Manager extension comes with logging functionality. Logging help us to find out what our extension does under the hood. We can fix extension bugs and issues so quickly if you have enabled logging for you instance.
 
 #####Enable logging######
-Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to add `SimpleRelevanceLogger` log category to logging levels. In **Warn** section add `SimpleRelevanceLogger` to its log levels. Repeat the same for `Info`, `Debug` category. Remember to enable logging message to File, To do so Prees `Log Info To File`, `Log Debug To File`. Finally pree `Apply` button to save the setings.
+Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to add `SimpleRelevanceLogger` log category to logging levels. In **Warn** section add `SimpleRelevanceLogger` to its log levels. Repeat the same for `Info`, `Debug` category. Remember to enable logging message to File, To do so Prees `Log Info To File`, `Log Debug To File`. Finally press `Apply` button to save the setings.
 
 
 [1]: https://www.simplerelevance.com/api_doc/
