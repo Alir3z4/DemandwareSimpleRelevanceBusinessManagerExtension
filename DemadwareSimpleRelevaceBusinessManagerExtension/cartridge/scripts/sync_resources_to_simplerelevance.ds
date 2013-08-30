@@ -44,7 +44,7 @@ function execute( args : PipelineDictionary ) : Number
 	function batchAPICall(endPoint : String, payload : Array) {
 		
 		if (payload.length == 0) {
-			logMe("Payload for '" + endPoint + "' was empty, API call has been made.", 'info');
+			logMe("Payload for '" + endPoint + "' was empty, API call has been ignored.", 'info');
 			return;
 		}
 
