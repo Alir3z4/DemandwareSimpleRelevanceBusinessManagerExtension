@@ -19,8 +19,8 @@
           <config-property key="OnError" value="Exception"/>
           <config-property key="ScriptFile" value="sync_resources_to_simplerelevance.ds"/>
           <key-binding alias="ScriptLog" key="ScriptLog"/>
-          <key-binding alias="CurrentHttpParameterMap.APIKEY.value" key="APIKEY"/>
-          <key-binding alias="CurrentHttpParameterMap.BusinessName.value" key="BusinessName"/>
+          <key-binding alias="CurrentJobParameterMap.APIKEY" key="APIKEY"/>
+          <key-binding alias="CurrentJobParameterMap.BusinessName" key="BusinessName"/>
         </pipelet-node>
         <node-display x="0" y="1"/>
       </node>
