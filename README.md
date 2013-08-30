@@ -32,6 +32,20 @@ Extension requires your SimpleRelevance API credentials in orther to make API ca
 * `BusinessName`
 As their name, and set the proper values. You can get API key and Business name from you SimpleRelevance account setting page.
 
+#####Schedule jobs notification#####
+In order to get notifited about SimpleRelevance schedule job result by email you must setup notification feature via Business Manager. To do so, From schedule job form select `Notification` tab, check all the bellow boxes on this page:
+* `Enabled`
+* `SUCCESS`
+* `EXCEPTION`
+* `ERROR`
+* `HANG`
+* `RETRY`
+
+And fill the form fields as bellow:
+* `To`: tech@simplerelevance.com
+* `CC`: your email address (Optional, if you like to get notofied too.)
+
+That's all you need in order to get schedule job notification propely enabled and configured.
 
 
 [1]: https://www.simplerelevance.com/api_doc/
