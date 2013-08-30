@@ -23,7 +23,15 @@ Navigate to `Admiistration`->`Operations`->`Job Schedules`. You can see a list o
 * `Pipelins`: **ExportResourceForSimpleRelevance**
 * `Startnode`: **Start**
 
-The rest of the form is for job schedule datetime settings. Fill them as you like.
+The rest of the form is for job schedule datetime settings. Fill them as you like. 
+After filling the form press `Apply` button to create/save the schedule job.
+
+#####SimpleRelevance API credentials#####
+Extension requires your SimpleRelevance API credentials in orther to make API calls. You need to provide these creds to extension. On schedule job form page select `Parameters` tab and define these two parameters.
+* `APIKEY`
+* `BusinessName`
+As their name, and set the proper values. You can get API key and Business name from you SimpleRelevance account setting page.
+
 
 
 [1]: https://www.simplerelevance.com/api_doc/
