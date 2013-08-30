@@ -53,9 +53,12 @@ function execute( args : PipelineDictionary ) : Number
 		httpClient.send(JSON.stringify({'batch': payload}));
 		
 		if (httpClient.getStatusCode() == 201 || httpClient.getStatusCode() == 200) {
-			logMe("Succesfull batch api call to '" + endPoint + "'", 'info');
+			logMe("Succesfull batch API call to '" + endPoint + "'", 'info');
+		} else if (httpClient.getStatusCode() == 403) {
+			logMe("API credentials are invalid.", 'error');
+			return PIPELET_ERROR;
 		} else {
-			log.error("Error in batch api call to '" + endPoint + "' Error was: " + httpClient.getErrorText(), 'error');
+			log.error("Error in batch API call to '" + endPoint + "' Error was: " + httpClient.getErrorText(), 'error');
 		}
 	}
 
