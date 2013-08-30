@@ -5,7 +5,26 @@ SimpleRelevance Business Manager extension provides a functionality to export yo
 
 ###How to install###
 
-Download SimpleRelevance extension zip archive and import it to your instance via Business Manager.
+Download SimpleRelevance extension zip archive and import it to your instance via Demandware Studio.
+
+Do the following to import the extension into Demandware Studio:
+* In Demandware Studio click `File`->`Import`, `General`->`Existing Projects into Workspace` then click `next`.
+* In the next window ensure `Select archive file` is checked and click on the `Browse` button on the right.
+* Select the archive file containing the integration, then click `Open`->`Finish`.
+* If you have an active Demandware server connection the Studio will ask you to link the cartridge to it. Click `Yes`.
+* To manually assign and deploy the cartridge to a server connection, right-click on it and then `Properties`. Select `Project References` and check the project containing the integration. The cartridge should be automatically uploaded.
+
+To activate the integration in SiteGenesis, the cartridge has to be assigned to the site and Business Manager:
+
+1. Login to Business Manager and click on `Administration`.
+2. Click on `Sites`->`Manage Sites`.
+3. Click on the site name followed by the `Settings` tab at the top.
+4. In the `Cartridges` text field, add the beginning of the pre-existing text `DemandwareSimpleRelevanceBusinessManagerExtension:`.
+5. Go back to `Manage Sites` and click on `Business Manager`.
+6. Click the `Settings` tab at the top.
+7. In the `Cartridges` text field, add in the beginning of the pre-existing text `DemandwareSimpleRelevanceBusinessManagerExtension:`.
+8. Repeat steps 3 and 4 for each `Instance Type` by selecting the appropriate type from the drop-down menu (`Production`, `Staging`, `Sandbox / Development`).
+
 
 ####Verify installation####
 
