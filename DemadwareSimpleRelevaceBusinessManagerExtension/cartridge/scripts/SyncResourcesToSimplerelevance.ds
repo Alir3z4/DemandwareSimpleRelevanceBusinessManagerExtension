@@ -18,7 +18,7 @@ importClass(dw.net.HTTPClient);
 importClass(dw.system.Logger);
 importClass(dw.system.Log);
 
-importScript("json_serializer.ds");
+importScript("utils/JsonSerializer.ds");
 
 
 function execute( args : PipelineDictionary ) : Number
