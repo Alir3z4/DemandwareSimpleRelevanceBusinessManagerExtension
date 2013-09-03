@@ -1,7 +1,7 @@
 /**
 *
-* @input APIKEY : String
-* @input BusinessName : String
+* @input APIKEY : String SimpleRelevance account API Key
+* @input BusinessName : String SimpleRelevance account API business name.
 *
 */
 importPackage(dw.system);
