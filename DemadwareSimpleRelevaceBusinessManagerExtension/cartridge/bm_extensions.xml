@@ -2,8 +2,8 @@
 <extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
 	<menuitem id="simplerelevance_menu" position="1999" site="true">
 		<name xml:lang="x-default">SimpleRelevance</name>
-		<short_description xml:lang="x-default">SimpleRelevance short description.</short_description>
-		<description xml:lang="x-default">SimpleRelevance description!</description>
+		<short_description xml:lang="x-default">SimpleRelevance.</short_description>
+		<description xml:lang="x-default">SimpleRelevance.</description>
 		<icon>icons/SimpleRelevance.gif</icon>
 	</menuitem>
 </extensions>
