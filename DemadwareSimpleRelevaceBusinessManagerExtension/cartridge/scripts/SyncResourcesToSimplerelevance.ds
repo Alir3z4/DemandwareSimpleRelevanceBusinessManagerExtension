@@ -46,7 +46,6 @@ function execute( args : PipelineDictionary ) : Number
 		else if (logLevel == "error") {if (log.isErrorEnabled()) {log.error(msg);}}
 	}
 
-
 	function batchAPICall(endPoint : String, payload : Array) {
 		
 		if (payload.length == 0) {
@@ -154,6 +153,7 @@ function execute( args : PipelineDictionary ) : Number
 		} else if (!product.getImages("large").isEmpty()) {
 			image_url = product.getImages("large")[0].getAbsURL().toString();
 		}
+
 		batchItemJson = JsonSerializer.getSimpleObject({
 			"item_name": product.getName(),
 			"item_id": product.getID(),
@@ -161,7 +161,25 @@ function execute( args : PipelineDictionary ) : Number
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
-		batchItemJson['variants'] = jsonSerializer.getSimpleObject(product.getVariants());
+
+		if (!product.isVariant() && product.getVariants().length > 0){
+			logMe("Product: '" + product.getID() + "' contains variants, Going to export them", 'info')
+
+			var batchVarItemJson: Object;
+			var listVarData : Array = new Array();
+			var variaIt : Iterator = product.getVariants().iterator();
+
+			while (variaIt.hasNext()) {
+				var varia : Product = variaIt.next();
+				batchVarItemJson = JsonSerializer.getSimpleObject({
+					'external_id': varia.getID(),
+					'name': varia.getName(),
+				});
+				listVarData.push(batchVarItemJson);
+			}
+			batchItemJson['variants'] = JsonSerializer.getSimpleObject(listVarData);
+		}
+
 		if (image_url.length != 0) {
 			logMe("Uploading Image : '" + image_url + "' for Product: '" + product.ID + "'", 'info');
 			var image_url_key = "image_url";
