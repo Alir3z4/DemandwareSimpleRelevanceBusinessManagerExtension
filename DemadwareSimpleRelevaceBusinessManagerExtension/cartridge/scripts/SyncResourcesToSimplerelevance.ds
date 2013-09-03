@@ -1,4 +1,9 @@
 /**
+* SyncResourcesToSimplerelevance.ds
+*
+* Export store resources such as `Products`, `Orders`, `Customers`
+* to SimpleRelevance by using batch API with `async` enabled on all
+* of batch API calls.
 *
 * @input APIKEY : String SimpleRelevance account API Key
 * @input BusinessName : String SimpleRelevance account API business name.
