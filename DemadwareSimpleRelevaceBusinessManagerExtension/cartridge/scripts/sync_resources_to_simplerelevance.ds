@@ -93,6 +93,7 @@ function execute( args : PipelineDictionary ) : Number
 		batchItemJson = JsonSerializer.getSimpleObject({
 			'email': profile.email,
 			'user_id': profile.customerNo,
+			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(profile, jsonSerializerArgs);
 		listData.push(batchItemJson);
@@ -140,6 +141,7 @@ function execute( args : PipelineDictionary ) : Number
 			"item_name": product.name,
 			"item_id": product.getID(),
 			"item_type": "product",
+			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
 		listData.push(batchItemJson);
@@ -173,6 +175,7 @@ function execute( args : PipelineDictionary ) : Number
 				'item_id': item.ID,
 				'price': item.priceModel.getPriceInfo().price.toString(),
 				'action_type': 1,
+				'async': 1,
 			});
 			listData.push(batchItemJson);
 		}
