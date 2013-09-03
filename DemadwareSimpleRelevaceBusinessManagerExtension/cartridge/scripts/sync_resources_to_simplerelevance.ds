@@ -58,7 +58,7 @@ function execute( args : PipelineDictionary ) : Number
 			logMe("API credentials are invalid.", 'error');
 			return PIPELET_ERROR;
 		} else {
-			log.error("Error in batch API call to '" + endPoint + "' Error was: " + httpClient.getErrorText(), 'error');
+			log.error("Batch API call to '" + endPoint + "' Failed. Error was: " + httpClient.getErrorText(), 'error');
 		}
 	}
 
