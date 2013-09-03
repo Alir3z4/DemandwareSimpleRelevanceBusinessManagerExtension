@@ -14,6 +14,7 @@ importPackage(dw.object);
 importPackage(dw.customer);
 importPackage(dw.catalog);
 importPackage(dw.order);
+importPackage(dw.content);
 
 importClass(dw.object.SystemObjectMgr);
 importClass(dw.util.List);
@@ -140,17 +141,37 @@ function execute( args : PipelineDictionary ) : Number
 	
 	while (productIt.hasNext()) {
 		var product : Product = productIt.next();
-		logMe("Preparing Product: '" + product.ID + "' to export", 'info');
-		
+		var image_url : String = '';
+		var is_image_small: Boolean = false;
+
+		logMe("Preparing Product: '" + product.getID() + "' to export", 'info');
+
+		if (!product.getImages("small").isEmpty()) {
+			image_url = product.getImages("small")[0].getAbsURL().toString();
+			is_image_small = true;
+		} else if (!product.getImages("medium").isEmpty()) {
+			image_url = product.getImages("medium")[0].getAbsURL().toString();
+		} else if (!product.getImages("large").isEmpty()) {
+			image_url = product.getImages("large")[0].getAbsURL().toString();
+		}
 		batchItemJson = JsonSerializer.getSimpleObject({
 			"item_name": product.getName(),
 			"item_id": product.getID(),
-			"image_url_small": product.getImages("small")[0],
 			"item_type": "product",
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
 		batchItemJson['variants'] = jsonSerializer.getSimpleObject(product.getVariants());
+		if (image_url.length != 0) {
+			logMe("Uploading Image : '" + image_url + "' for Product: '" + product.ID + "'", 'info');
+			var image_url_key = "image_url";
+			if (is_image_small) {
+				image_url_key = image_url_key + "_small";
+			}
+			batchItemJson[image_url_key] = JsonSerializer.getSimpleObject(image_url);
+		} else {
+			logMe("No image has been uploaded for Product: '" + product.ID + "'", "info");
+		}
 
 		listData.push(batchItemJson);
 	}
