@@ -149,9 +149,11 @@ function execute( args : PipelineDictionary ) : Number
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
+		batchItemJson['variants'] = jsonSerializer.getSimpleObject(product.getVariants());
+
 		listData.push(batchItemJson);
 	}
-	
+
 	logMe("Batch API call for 'Products'", 'info');
 	batchAPICall(SimpleRelevanceAPIEndPointItems, listData);
 
