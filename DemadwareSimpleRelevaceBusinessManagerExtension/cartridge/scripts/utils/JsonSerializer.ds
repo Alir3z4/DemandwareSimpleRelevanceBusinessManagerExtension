@@ -122,6 +122,6 @@ JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_MONEY.toS
 JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_QUANTITY.toString()] = function(o) {return (o) ? o.value : null;};
 JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_SET_OF_STRING.toString()] = function(o) {return (o) ? o.toString() : null;};
 JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_SET_OF_INT.toString()] = function(o) {return (o) ? o.toString() : null;};
-JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_SET_OF_NUMBER.toString()] = function(o) {rreturn (o) ? o.toString() : null;};
+JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_SET_OF_NUMBER.toString()] = function(o) {return (o) ? o.toString() : null;};
 JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_ENUM_OF_STRING.toString()] = function(o) {return (o) ? o.value : null;};
 JsonSerializer.valueSet[dw.object.ObjectAttributeDefinition.VALUE_TYPE_ENUM_OF_INT.toString()] = function(o) {return (o) ? o.value : null;};
