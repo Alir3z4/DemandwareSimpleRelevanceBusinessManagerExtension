@@ -19,10 +19,10 @@ To activate the integration in SiteGenesis, the cartridge has to be assigned to 
 1. Login to Business Manager and click on `Administration`.
 2. Click on `Sites`->`Manage Sites`.
 3. Click on the site name followed by the `Settings` tab at the top.
-4. In the `Cartridges` text field, add the beginning of the pre-existing text `DemandwareSimpleRelevanceBusinessManagerExtension:`.
+4. In the `Cartridges` text field, add the beginning of the pre-existing text `ext_simplerelevance:`.
 5. Go back to `Manage Sites` and click on `Business Manager`.
 6. Click the `Settings` tab at the top.
-7. In the `Cartridges` text field, add in the beginning of the pre-existing text `DemandwareSimpleRelevanceBusinessManagerExtension:`.
+7. In the `Cartridges` text field, add in the beginning of the pre-existing text `ext_simplerelevance:`.
 8. Repeat steps 3 and 4 for each `Instance Type` by selecting the appropriate type from the drop-down menu (`Production`, `Staging`, `Sandbox / Development`).
 
 
@@ -65,7 +65,7 @@ As their name, and set the proper values. You can get API key and Business name 
 
 
 #####Schedule jobs notification#####
-In order to get notifited about SimpleRelevance schedule job result by email you must setup notification feature via Business Manager. To do so, From schedule job form select `Notification` tab, check all the bellow boxes on this page:
+In order to get notified about SimpleRelevance schedule job result by email you must setup notification feature via Business Manager. To do so, From schedule job form select `Notification` tab, check all the bellow boxes on this page:
 * `Enabled`
 * `SUCCESS`
 * `EXCEPTION`
@@ -75,18 +75,18 @@ In order to get notifited about SimpleRelevance schedule job result by email you
 
 And fill the form fields as bellow:
 * `To`: tech@simplerelevance.com
-* `CC`: your email address (Optional, if you like to get notofied too.)
+* `CC`: your email address (Optional, if you like to get notified too.)
 
 ![Administration Operations Job Schedules Notification Tab](documentation/document_images/Administration_Operations_Job_Schedules_Notification_Tab.png?raw=true "Administration Operations Job Schedules Notification Tab")
 
-That's all you need in order to get schedule job notification propely enabled and configured.
+That's all you need in order to get schedule job notification properly enabled and configured.
 
 
 ####Logging####
 SimpleRelevance Business Manager extension comes with logging functionality. Logging help us to find out what our extension does under the hood. We can fix extension bugs and issues so quickly if you have enabled logging for you instance.
 
 #####Enable logging######
-Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to add `SimpleRelevanceLogger` log category to logging levels. In **Warn** section add `SimpleRelevanceLogger` to its log levels. Repeat the same for `Info`, `Debug` category. Remember to enable logging message to File, To do so Prees `Log Info To File`, `Log Debug To File`. Finally press `Apply` button to save the settings.
+Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to add `SimpleRelevanceLogger` log category to logging levels. In **Warn** section add `SimpleRelevanceLogger` to its log levels. Repeat the same for `Info`, `Debug` category. Remember to enable logging message to File, To do so Press `Log Info To File`, `Log Debug To File`. Finally press `Apply` button to save the settings.
 
 ![Administration Operations Custom Log Settings](documentation/document_images/Administration_Operations_Custom_Log_Settings.png?raw=true "Administration Operations Custom Log Settings")
 
