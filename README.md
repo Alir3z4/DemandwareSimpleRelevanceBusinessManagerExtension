@@ -30,7 +30,7 @@ To activate the integration in SiteGenesis, the cartridge has to be assigned to 
 
 Navigate to `Administration`->`Organization`->`Roles & Permissions` 
 
-![Administration Organization Roles Permissions](documentation/document_images/Administration_Organization_Roles_Permissions.png?raw=true "Administration Organization Roles Permissions")
+![Administration Organization Roles Permissions](raw/master/documentation/document_images/Administration_Organization_Roles_Permissions.png?raw=true "Administration Organization Roles Permissions")
 and select `Administrator` user or any other user which has the rights to perform tasks related to the overall administration of the merchant organization and its users and roles. After selecting admin user, Select `Business Manager Modules` tab. From `Select Context:` dropdown select your site instance that you wish to enable SimpleRelevance extension for and click Apply. `SimpleRelevance` module name and *icon* should be there,
 
 ![SimpleRelevance In Business Manager Modules](raw/master/documentation/document_images/SimpleRelevance_In_Business_Manager_Modules.png?raw=true "SimpleRelevance In Business Manager Modules")
