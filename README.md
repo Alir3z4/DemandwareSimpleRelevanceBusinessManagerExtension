@@ -33,7 +33,7 @@ Navigate to `Administration`->`Organization`->`Roles & Permissions`
 ![Administration Organization Roles Permissions](documentation/document_images/Administration_Organization_Roles_Permissions.png?raw=true "Administration Organization Roles Permissions")
 and select `Administrator` user or any other user which has the rights to perform tasks related to the overall administration of the merchant organization and its users and roles. After selecting admin user, Select `Business Manager Modules` tab. From `Select Context:` dropdown select your site instance that you wish to enable SimpleRelevance extension for and click Apply. `SimpleRelevance` module name and *icon* should be there,
 
-![SimpleRelevance In Business Manager Modules](documentation/document_images/SimpleRelevance_In_Business_Manager_Modules.png?raw=true "SimpleRelevance In Business Manager Modules")
+![SimpleRelevance In Business Manager Modules](raw/master/documentation/document_images/SimpleRelevance_In_Business_Manager_Modules.png?raw=true "SimpleRelevance In Business Manager Modules")
 
 if you can see it then it means you've installed the extension successfully.
 
@@ -49,7 +49,7 @@ Navigate to `Administration`->`Operations`->`Job Schedules`. You can see a list 
 * `Pipelins`: **ExportResourceForSimpleRelevance**
 * `Startnode`: **Start**
 
-![Administration Operations Job Schedules General Tab](documentation/document_images/Administration_Operations_Job_Schedules_General_Tab.png?raw=true "Administration Operations Job Schedules General Tab")
+![Administration Operations Job Schedules General Tab](raw/master/documentation/document_images/Administration_Operations_Job_Schedules_General_Tab.png?raw=true "Administration Operations Job Schedules General Tab")
 
 
 The rest of the form is for job schedule date-time settings. Fill them as you like. 
@@ -61,7 +61,7 @@ Extension requires your SimpleRelevance API credentials in other to make API cal
 * `BusinessName`
 As their name, and set the proper values. You can get API key and Business name from you SimpleRelevance account setting page.
 
-![Administration Operations Job Schedules Parameters Tab](documentation/document_images/Administration_Operations_Job_Schedules_Parameters_Tab.png?raw=true "Administration Operations Job Schedules Parameters Tab")
+![Administration Operations Job Schedules Parameters Tab](raw/master/documentation/document_images/Administration_Operations_Job_Schedules_Parameters_Tab.png?raw=true "Administration Operations Job Schedules Parameters Tab")
 
 
 #####Schedule jobs notification#####
@@ -77,7 +77,7 @@ And fill the form fields as bellow:
 * `To`: tech@simplerelevance.com
 * `CC`: your email address (Optional, if you like to get notified too.)
 
-![Administration Operations Job Schedules Notification Tab](documentation/document_images/Administration_Operations_Job_Schedules_Notification_Tab.png?raw=true "Administration Operations Job Schedules Notification Tab")
+![Administration Operations Job Schedules Notification Tab](raw/master/documentation/document_images/Administration_Operations_Job_Schedules_Notification_Tab.png?raw=true "Administration Operations Job Schedules Notification Tab")
 
 That's all you need in order to get schedule job notification properly enabled and configured.
 
@@ -88,6 +88,6 @@ SimpleRelevance Business Manager extension comes with logging functionality. Log
 #####Enable logging######
 Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to add `SimpleRelevanceLogger` log category to logging levels. In **Warn** section add `SimpleRelevanceLogger` to its log levels. Repeat the same for `Info`, `Debug` category. Remember to enable logging message to File, To do so Press `Log Info To File`, `Log Debug To File`. Finally press `Apply` button to save the settings.
 
-![Administration Operations Custom Log Settings](documentation/document_images/Administration_Operations_Custom_Log_Settings.png?raw=true "Administration Operations Custom Log Settings")
+![Administration Operations Custom Log Settings](raw/master/documentation/document_images/Administration_Operations_Custom_Log_Settings.png?raw=true "Administration Operations Custom Log Settings")
 
 [1]: https://www.simplerelevance.com/api_doc/
