@@ -244,10 +244,17 @@ function execute( args : PipelineDictionary ) : Number
 			});
 			listData.push(batchItemJson);
 		}
-	}
+		
+		countOnMe += 1;
+		if (countOnMe >= 1999 || !productIt.hasNext()) {
+			logMe("Batch API call for 'Orders'", 'info');
+			batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
 	
-	logMe("Batch API call for 'Orders'", 'info');
-	batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
+			var batchItemJson: Object;
+			var listData : Array = new Array();
+			countOnMe = 0;
+		}
+	}
 
 	logMe("Free!", 'info');
 	listData = null;
