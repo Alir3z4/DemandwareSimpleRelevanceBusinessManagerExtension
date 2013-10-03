@@ -88,6 +88,7 @@ function execute( args : PipelineDictionary ) : Number
 		]
 	}
 	
+	countOnMe = 0;
 	while (customerIt.hasNext()) {
 		var profile : Profile = customerIt.next();
 		logMe("Preparing Customer: '" + profile.customerNo + "' to export", 'info');
@@ -103,10 +104,17 @@ function execute( args : PipelineDictionary ) : Number
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(profile, jsonSerializerArgs);
 		listData.push(batchItemJson);
+		
+		countOnMe += 1;
+		if (countOnMe >= 1999 || !customerIt.hasNext()) {
+			logMe("Batch API call for 'Customers'", 'info');
+			batchAPICall(SimpleRelevanceAPIEndPointUsers, listData);
+			
+			var batchItemJson: Object;
+			var listData : Array = new Array();
+			countOnMe = 0;
+		}
 	}
-	
-	logMe("Batch API call for 'Customers'", 'info');
-	batchAPICall(SimpleRelevanceAPIEndPointUsers, listData);
 	
 	customerIt = null;
 	// !Customers
