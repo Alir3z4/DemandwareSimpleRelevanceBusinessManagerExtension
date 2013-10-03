@@ -39,6 +39,7 @@ function execute( args : PipelineDictionary ) : Number
 	var httpClient : HTTPClient = new HTTPClient();
 	var log : Log = Logger.getLogger("SimpleRelevance", 'SimpleRelevanceLogger');
 	var jsonSerializerArgs = {};
+	var countOnMe = 0;
 	
 	function logMe(msg : String, logLevel : String) {
 		if (logLevel == "debug") {if (log.isDebugEnabled()) {log.debug(msg);}}
