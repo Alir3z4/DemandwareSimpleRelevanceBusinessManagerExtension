@@ -147,6 +147,7 @@ function execute( args : PipelineDictionary ) : Number
 		]
 	}
 	
+	countOnMe = 0;
 	while (productIt.hasNext()) {
 		var product : Product = productIt.next();
 		var image_url : String = '';
@@ -186,7 +187,7 @@ function execute( args : PipelineDictionary ) : Number
 				});
 				listVarData.push(batchVarItemJson);
 			}
-			batchItemJson['vaariants'] = JsonSerializer.getSimpleObject(listVarData);
+			batchItemJson['variantz'] = JsonSerializer.getSimpleObject(listVarData);
 		}
 
 		if (image_url.length != 0) {
@@ -201,10 +202,17 @@ function execute( args : PipelineDictionary ) : Number
 		}
 
 		listData.push(batchItemJson);
-	}
+		
+		countOnMe += 1;
+		if (countOnMe >= 1999 || !productIt.hasNext()) {
+			logMe("Batch API call for 'Products'", 'info');
+			batchAPICall(SimpleRelevanceAPIEndPointItems, listData);
 
-	logMe("Batch API call for 'Products'", 'info');
-	batchAPICall(SimpleRelevanceAPIEndPointItems, listData);
+			var batchItemJson: Object;
+			var listData : Array = new Array();
+			countOnMe = 0;
+		}
+	}
 
 	productIt = null;
 	// !Products
@@ -216,6 +224,7 @@ function execute( args : PipelineDictionary ) : Number
 	var batchItemJson: Object;
 	var listData : Array = new Array();
 	
+	countOnMe = 0;
 	while (orderIt.hasNext()) {
 		var order : Order = orderIt.next();
 		logMe("Preparing Order: '" + order.orderNo + "' to export", 'info');
