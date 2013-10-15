@@ -246,7 +246,7 @@ function execute( args : PipelineDictionary ) : Number
 		}
 		
 		countOnMe += 1;
-		if (countOnMe >= 1999 || !productIt.hasNext()) {
+		if (countOnMe >= 1999 || !orderIt.hasNext()) {
 			logMe("Batch API call for 'Orders'", 'info');
 			batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
 	
