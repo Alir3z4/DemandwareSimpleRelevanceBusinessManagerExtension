@@ -232,7 +232,7 @@ function execute( args : PipelineDictionary ) : Number
 		var itemIt : Iterator = order.productLineItems.iterator();
 		
 		while (itemIt.hasNext()) {
-			var item : Product =  itemIt.next();
+			var item : ProductLineItem  =  itemIt.next();
 			logMe("Preparing Order Item: '" + item.ID + "' to export", 'info');
 
 			batchItemJson = JsonSerializer.getSimpleObject({
