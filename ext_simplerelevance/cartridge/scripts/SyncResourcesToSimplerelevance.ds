@@ -233,7 +233,7 @@ function execute( args : PipelineDictionary ) : Number
 		
 		while (itemIt.hasNext()) {
 			var item : ProductLineItem  =  itemIt.next();
-			logMe("Preparing Order Item: '" + item.ID + "' to export", 'info');
+			logMe("Preparing Order Item: '" + item.productID + "' to export", 'info');
 
 			batchItemJson = JsonSerializer.getSimpleObject({
 				'user_id': order.getCustomerNo(),
