@@ -99,7 +99,7 @@ function execute( args : PipelineDictionary ) : Number
 		}
 		batchItemJson = JsonSerializer.getSimpleObject({
 			'email': profile.getEmail(),
-			'user_id': profile.getCustomerNo(),
+			'user_id': profile.customer.getID(),
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(profile, jsonSerializerArgs);
