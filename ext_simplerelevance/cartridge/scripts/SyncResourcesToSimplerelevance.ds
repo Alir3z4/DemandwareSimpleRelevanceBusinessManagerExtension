@@ -54,7 +54,7 @@ function execute( args : PipelineDictionary ) : Number
 			return;
 		}
 
-		httpClient.open("POST", endPoint, args.APIKEY, args.BusinessName);
+		httpClient.open("POST", endPoint, args.BusinessName, args.APIKEY);
 		httpClient.setRequestHeader("Content-Type", "application/json");
 		httpClient.send(JSON.stringify({'batch': payload}));
 		
