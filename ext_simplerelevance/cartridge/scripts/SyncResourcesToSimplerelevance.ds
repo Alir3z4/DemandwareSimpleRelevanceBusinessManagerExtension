@@ -171,7 +171,6 @@ function execute( args : PipelineDictionary ) : Number
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
 
 		if (!product.isVariant() && product.getVariants().length > 0){
-			logMe("Product: '" + product.getID() + "' contains variants, Going to export them", 'info')
 
 			var batchVarItemJson: Object;
 			var listVarData : Array = new Array();
