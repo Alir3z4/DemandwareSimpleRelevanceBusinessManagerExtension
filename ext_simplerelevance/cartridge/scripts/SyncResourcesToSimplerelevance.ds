@@ -40,7 +40,7 @@ function execute( args : PipelineDictionary ) : Number
 	var log : Log = Logger.getLogger("SimpleRelevance", 'SimpleRelevanceLogger');
 	var jsonSerializerArgs = {};
 	var countOnMe = 0;
-	
+
 	function logMe(msg : String, logLevel : String) {
 		if (logLevel == "debug") {if (log.isDebugEnabled()) {log.debug(msg);}}
 		else if (logLevel == "info") {if (log.isInfoEnabled()) {log.info(msg);}}
@@ -48,7 +48,7 @@ function execute( args : PipelineDictionary ) : Number
 	}
 
 	function batchAPICall(endPoint : String, payload : Array) {
-		
+
 		if (payload.length == 0) {
 			logMe("Payload for '" + endPoint + "' was empty, API call has been ignored.", 'info');
 			return;
@@ -70,7 +70,7 @@ function execute( args : PipelineDictionary ) : Number
 
 	// Customers
 	logMe("Start syncing 'Customers'", 'info');
-	
+
 	var customerIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Profile");
 	var batchItemJson: Object;
 	var listData : Array = new Array();
@@ -87,16 +87,15 @@ function execute( args : PipelineDictionary ) : Number
 			'female',
 		]
 	}
-	
+
 	countOnMe = 0;
 	while (customerIt.hasNext()) {
 		var profile : Profile = customerIt.next();
-		logMe("Preparing Customer: '" + profile.customerNo + "' to export", 'info');
-		
+
 		if (profile.getEmail() == "") {
-			logMe("Email attr of Customer: '" + profile.customerNo + "' was empty, Ignored.", "info");
 			continue;
 		}
+		
 		batchItemJson = JsonSerializer.getSimpleObject({
 			'email': profile.getEmail(),
 			'user_id': profile.customer.getID(),
@@ -115,14 +114,14 @@ function execute( args : PipelineDictionary ) : Number
 			countOnMe = 0;
 		}
 	}
-	
+
 	customerIt = null;
 	// !Customers
-	
-	
+
+
 	// Products
 	logMe("Start syncing 'Products'", 'info');
-	
+
 	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
 	var batchItemJson: Object;
 	var listData : Array = new Array();
@@ -146,14 +145,13 @@ function execute( args : PipelineDictionary ) : Number
 			'thumbnail',	
 		]
 	}
-	
+
 	countOnMe = 0;
 	while (productIt.hasNext()) {
 		var product : Product = productIt.next();
 		var image_url : String = '';
 		var is_image_small: Boolean = false;
 
-		logMe("Preparing Product: '" + product.getID() + "' to export", 'info');
 
 		if (!product.getImages("small").isEmpty()) {
 			image_url = product.getImages("small")[0].getAbsURL().toString();
@@ -191,18 +189,17 @@ function execute( args : PipelineDictionary ) : Number
 		}
 
 		if (image_url.length != 0) {
-			logMe("Uploading Image : '" + image_url + "' for Product: '" + product.ID + "'", 'info');
 			var image_url_key = "image_url";
+			
 			if (is_image_small) {
 				image_url_key = image_url_key + "_small";
 			}
+			
 			batchItemJson[image_url_key] = JsonSerializer.getSimpleObject(image_url);
-		} else {
-			logMe("No image has been uploaded for Product: '" + product.ID + "'", "info");
 		}
 
 		listData.push(batchItemJson);
-		
+
 		countOnMe += 1;
 		if (countOnMe >= 1999 || !productIt.hasNext()) {
 			logMe("Batch API call for 'Products'", 'info');
@@ -216,24 +213,22 @@ function execute( args : PipelineDictionary ) : Number
 
 	productIt = null;
 	// !Products
-	
+
 	// Orders
 	logMe("Start syncing 'Orders'", 'info');
-	
+
 	var orderIt: SeekableIterator = SystemObjectMgr.getAllSystemObjects("Order");
 	var batchItemJson: Object;
 	var listData : Array = new Array();
-	
+
 	countOnMe = 0;
 	while (orderIt.hasNext()) {
 		var order : Order = orderIt.next();
-		logMe("Preparing Order: '" + order.orderNo + "' to export", 'info');
-		
+
 		var itemIt : Iterator = order.productLineItems.iterator();
-		
+
 		while (itemIt.hasNext()) {
 			var item : ProductLineItem  =  itemIt.next();
-			logMe("Preparing Order Item: '" + item.productID + "' to export", 'info');
 
 			batchItemJson = JsonSerializer.getSimpleObject({
 				'user_id': order.customer.getID(),
@@ -244,12 +239,12 @@ function execute( args : PipelineDictionary ) : Number
 			});
 			listData.push(batchItemJson);
 		}
-		
+
 		countOnMe += 1;
 		if (countOnMe >= 1999 || !orderIt.hasNext()) {
 			logMe("Batch API call for 'Orders'", 'info');
 			batchAPICall(SimpleRelevanceAPIEndPointActions, listData);
-	
+
 			var batchItemJson: Object;
 			var listData : Array = new Array();
 			countOnMe = 0;
