@@ -86,7 +86,7 @@ function execute( args : PipelineDictionary ) : Number
 			'male',
 			'female',
 		]
-	}
+	};
 
 	countOnMe = 0;
 	while (customerIt.hasNext()) {
@@ -144,7 +144,7 @@ function execute( args : PipelineDictionary ) : Number
 			'pageURL',
 			'thumbnail',	
 		]
-	}
+	};
 
 	countOnMe = 0;
 	while (productIt.hasNext()) {
