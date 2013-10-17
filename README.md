@@ -91,3 +91,4 @@ Navigate to `Administration`->`Operations`->`Custom Log Settings`. You need to a
 ![Administration Operations Custom Log Settings](documentation/document_images/Administration_Operations_Custom_Log_Settings.png?raw=true "Administration Operations Custom Log Settings")
 
 [1]: https://www.simplerelevance.com/api_doc/
+
