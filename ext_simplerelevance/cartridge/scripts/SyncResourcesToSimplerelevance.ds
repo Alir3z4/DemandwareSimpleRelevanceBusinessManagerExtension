@@ -184,7 +184,7 @@ function execute( args : PipelineDictionary ) : Number
 				});
 				listVarData.push(batchVarItemJson);
 			}
-			batchItemJson['vaariants'] = JsonSerializer.getSimpleObject(listVarData);
+			batchItemJson['variantz'] = JsonSerializer.getSimpleObject(listVarData);
 		}
 
 		if (image_url.length != 0) {
