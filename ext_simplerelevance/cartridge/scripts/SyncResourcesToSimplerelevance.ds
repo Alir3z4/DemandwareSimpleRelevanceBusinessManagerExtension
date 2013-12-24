@@ -134,15 +134,15 @@ function execute( args : PipelineDictionary ) : Number
 			'lastModified',
 			'image',
 			'longDescription',
-			'shortDescription',
 			'manufacturerName',
 			'manufacturerSKU',
 			'name',
-			'pageDescription',
 			'pageKeywords',
 			'pageTitle',
 			'pageURL',
-			'thumbnail',	
+			'thumbnail',
+			'pageURL',
+			'price',
 		]
 	};
 
