@@ -73,7 +73,7 @@
      <pipeline name="custom_extensionsactions-SiteAction" />
   </sub-pipelines>
   <parameters>
-			<parameter name="ErrorParameter" value="The sample parameter as used in the preference site (specified in bm_extensions.xml of the sample bm_custom_plugin cartridge) "/>
+	<parameter name="ErrorParameter" value="The sample parameter as used in the preference site (specified in bm_extensions.xml of the sample bm_custom_plugin cartridge) "/>
 	<parameter name="menuname" value="Demo Site Preference Extension"/>
 	<parameter name="mainmenuname" value="Site Preferences"/>
   </parameters>
