@@ -17,13 +17,32 @@
 *
 *
 * @output MyDate : Date
+* @output product : Object
 */
-importPackage( dw.system );
+importPackage(dw.system);
+importPackage(dw.object);
+importPackage(dw.customer);
+importPackage(dw.catalog);
+importPackage(dw.order);
+importPackage(dw.content);
+
+importClass(dw.object.SystemObjectMgr);
+importClass(dw.util.List);
+importClass(dw.util.Collection);
+importClass(dw.util.SeekableIterator);
+importClass(dw.net.HTTPClient);
+importClass(dw.system.Logger);
+importClass(dw.system.Log);
 
 function execute( pdict : PipelineDictionary ) : Number
 {
 	var d : Date = new Date();
 	pdict.MyDate = d;
+	
+	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
+	var product : Object = productIt.first();
+	
+	pdict.product = product;
 
     return PIPELET_NEXT;
 }
