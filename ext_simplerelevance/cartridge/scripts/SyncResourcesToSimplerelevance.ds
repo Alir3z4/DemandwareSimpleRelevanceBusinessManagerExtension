@@ -152,6 +152,7 @@ function execute( args : PipelineDictionary ) : Number
 			"item_name": product.getName(),
 			"item_id": product.getID(),
 			"item_type": "product",
+			"price": product.getPriceModel().getMinPrice().value.toString(),
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
