@@ -134,15 +134,11 @@ function execute( args : PipelineDictionary ) : Number
 			'brand',
 			'creationDate',
 			'lastModified',
-			'image',
-			'longDescription',
 			'manufacturerName',
 			'manufacturerSKU',
 			'name',
 			'pageKeywords',
 			'pageTitle',
-			'pageURL',
-			'thumbnail',
 			'pageURL',
 			'price',
 		]
@@ -153,16 +149,7 @@ function execute( args : PipelineDictionary ) : Number
 		var product : Product = productIt.next();
 		var image_url : String = '';
 		var is_image_small: Boolean = false;
-
-
-		if (!product.getImages("small").isEmpty()) {
-			image_url = product.getImages("small")[0].getAbsURL().toString();
-			is_image_small = true;
-		} else if (!product.getImages("medium").isEmpty()) {
-			image_url = product.getImages("medium")[0].getAbsURL().toString();
-		} else if (!product.getImages("large").isEmpty()) {
-			image_url = product.getImages("large")[0].getAbsURL().toString();
-		}
+		var image_url_key : String = "image_url";
 
 		batchItemJson = JsonSerializer.getSimpleObject({
 			"item_name": product.getName(),
@@ -171,6 +158,22 @@ function execute( args : PipelineDictionary ) : Number
 			'async': 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
+
+		if (product.getImage("large") ) {
+			image_url = product.getImage("large").absURL.toString();
+		} else if (product.getImage("medium")) {
+			image_url = product.getImage("medium").absURL.toString();
+		} else if (product.getImage("small")) {
+			image_url = product.getImage("small").absURL.toString();
+			is_image_small = true;
+		}
+
+		if (image_url.length != 0) {
+			if (is_image_small) {
+				image_url_key = image_url_key + "_small";
+			}
+			batchItemJson[image_url_key] = image_url;
+		}
 
 		if (!product.isVariant() && product.getVariants().length > 0){
 
@@ -187,16 +190,6 @@ function execute( args : PipelineDictionary ) : Number
 				listVarData.push(batchVarItemJson);
 			}
 			batchItemJson['variantz'] = JsonSerializer.getSimpleObject(listVarData);
-		}
-
-		if (image_url.length != 0) {
-			var image_url_key = "image_url";
-			
-			if (is_image_small) {
-				image_url_key = image_url_key + "_small";
-			}
-			
-			batchItemJson[image_url_key] = JsonSerializer.getSimpleObject(image_url);
 		}
 
 		listData.push(batchItemJson);
