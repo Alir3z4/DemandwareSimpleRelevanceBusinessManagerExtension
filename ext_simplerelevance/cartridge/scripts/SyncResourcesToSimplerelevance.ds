@@ -130,7 +130,6 @@ function execute( args : PipelineDictionary ) : Number
 	jsonSerializerArgs = {
 		'includeFields': [
 			'EAN',
-			'ID',
 			'brand',
 			'creationDate',
 			'lastModified',
@@ -139,8 +138,6 @@ function execute( args : PipelineDictionary ) : Number
 			'name',
 			'pageKeywords',
 			'pageTitle',
-			'pageURL',
-			'price',
 		]
 	};
 
