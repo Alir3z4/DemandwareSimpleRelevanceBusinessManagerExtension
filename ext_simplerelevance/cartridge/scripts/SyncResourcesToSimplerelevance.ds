@@ -153,6 +153,7 @@ function execute( args : PipelineDictionary ) : Number
 			"item_id": product.getID(),
 			"item_type": "product",
 			"price": product.getPriceModel().getMinPrice().value.toString(),
+			"description": product.getLongDescription(),
 			"item_url": current_site_url + '/' + product.getID().toString() + '.html',
 			"async": 1,
 		});
