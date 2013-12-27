@@ -53,6 +53,7 @@
 	 <parameter name="menuname" value="Demo Site Submenu Extension"/>
 	 <parameter name="menupath" value="customsitemenuextension_id01"/>
 	 <parameter name="mainmenuname" value="DEMO Site Menu Extension"/>
+	<parameter name="ProductID" value="25518174" />
   </parameters>
   <icon>icons/star_yellow_new.gif</icon>
 </menuaction>

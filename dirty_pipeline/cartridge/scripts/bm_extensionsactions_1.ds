@@ -16,8 +16,9 @@
 *-   @output ExampleOut : Number
 *
 *
+* @input product: Product
 * @output MyDate : Date
-* @output product : Object
+* @output product : Product
 */
 importPackage(dw.system);
 importPackage(dw.object);
@@ -38,11 +39,6 @@ function execute( pdict : PipelineDictionary ) : Number
 {
 	var d : Date = new Date();
 	pdict.MyDate = d;
-	
-	var productIt: SeekableIterator = ProductMgr.queryAllSiteProducts();
-	var product : Object = productIt.first();
-	
-	pdict.product = product;
 
     return PIPELET_NEXT;
 }
