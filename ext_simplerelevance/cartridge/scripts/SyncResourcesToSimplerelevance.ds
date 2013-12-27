@@ -233,7 +233,7 @@ function execute( args : PipelineDictionary ) : Number
 
 			batchItemJson = JsonSerializer.getSimpleObject({
 				'user_id': order.customer.getID(),
-				'item_id': item.productID,
+				'item_id': item.getProductID(),
 				'price': item.getPriceValue(),
 				'action_type': 1,
 				'async': 1,
