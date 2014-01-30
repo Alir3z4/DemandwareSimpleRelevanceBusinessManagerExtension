@@ -152,13 +152,23 @@ function execute( args : PipelineDictionary ) : Number
 			"item_name": product.getName(),
 			"item_id": product.getID(),
 			"item_type": "product",
-			"price": product.getPriceModel().getMinPrice().value.toString(),
-			"description": product.getLongDescription(),
-			"in_stock": product.getAvailabilityModel().isInStock(),
-			"item_url": current_site_url + '/' + product.getID().toString() + '.html',
 			"async": 1,
 		});
 		batchItemJson['data_dict'] = JsonSerializer.getSimpleObject(product, jsonSerializerArgs);
+		batchItemJson['data_dict']['price'] = product.getPriceModel().getMinPrice().value.toString();
+		batchItemJson['data_dict']["item_url"] = current_site_url + '/' + product.getID().toString() + '.html';
+		batchItemJson['data_dict']['description'] = product.getLongDescription()+'';
+		
+		var in_stock : Boolean = product.getAvailabilityModel().isInStock();
+		var int_in_stock;
+		if(in_stock){
+			int_in_stock = 1;
+		} else {
+			int_in_stock = 0;
+		}
+		
+		batchItemJson['data_dict']['in_stock'] = int_in_stock;
+		
 
 		if (product.getImage("large") ) {
 			image_url = product.getImage("large").absURL.toString();
@@ -173,7 +183,7 @@ function execute( args : PipelineDictionary ) : Number
 			if (is_image_small) {
 				image_url_key = image_url_key + "_small";
 			}
-			batchItemJson[image_url_key] = image_url;
+			batchItemJson['data_dict'][image_url_key] = image_url;
 		}
 
 		if (!product.isVariant() && product.getVariants().length > 0){
